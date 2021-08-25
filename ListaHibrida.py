@@ -5,7 +5,7 @@ class Node:
         self.__carga = dado
         self.__prox = -1
 
-    def set_prox(self,novo_prox):
+    def set_prox(self, novo_prox):
         self.__prox = novo_prox
 
     def get_prox(self):
@@ -42,24 +42,27 @@ class ListaHibrida:
     def set_no(self, no):
         self.__vetor.append(no)
 
-    #def get_
-
     def inserir_inicio(self, valor):
 
         novo_no = Node(valor)
+        #if self.get_tamanho() == 0:
+        #    novo_no.set_prox(self.get_tamanho() - 1)
+        #    self.set_no(novo_no)
+        #    self.set_head(self.get_tamanho() - 1)
 
-        if self.get_head() == ( self.get_tamanho() - 1):
+        if self.get_tamanho() == 0 or self.get_head() == (self.get_tamanho() - 1):
             novo_no.set_prox(self.get_tamanho() - 1)
             self.set_no(novo_no)
             self.set_head(self.get_tamanho() - 1)
 
-        elif self.get_head() == 0:
+        elif self.get_tamanho() > 0 and self.get_head() == 0:
             nova_lista = list(reversed(self.get_vetor()))
             for i in range(len(nova_lista)):
                 nova_lista[i].set_prox(i - 1)
 
-            nova_lista.append(novo_no)
+            #nova_lista.append(novo_no)
             self.set_vetor(nova_lista)
+            novo_no.set_prox(self.get_tamanho() - 1)
             self.set_no(novo_no)
             self.set_head(self.get_tamanho() - 1)
 
@@ -69,14 +72,31 @@ class ListaHibrida:
 
         if self.get_head() == 0:
 
-            novo_vetor = copy.deepcopy(self.get_vetor())
+            #novo_vetor = copy.deepcopy(self.get_vetor())
+            self.get_vetor()[-1].set_prox(self.get_tamanho())
 
-            novo_vetor[-1].set_prox(self.get_tamanho())
+            self.set_no(novo_no)
+            #self.set_vetor(novo_vetor)
+        else:
+            nova_lista = list(reversed(self.get_vetor()))
 
-            novo_vetor.set_no(novo_no)
+            for i in range(len(nova_lista)):
+                nova_lista[i].set_prox(i + 1)
+            #nova_lista.append(novo_no)
+            self.set_vetor(nova_lista)
+            self.set_no(novo_no)
+            self.set_head(0)
 
-            self.set_vetor(novo_vetor)
-        pass
+    def imprime_lista(self):
+
+        i = copy.deepcopy(self.get_head())
+
+        while True:
+            print('(', self.get_vetor()[i].get_carga(), ' | ', self.get_vetor()[i].get_prox(), ')')
+            if self.get_vetor()[i].get_prox() == -1 or self.get_vetor()[i].get_prox() is None:
+                break
+            i = copy.deepcopy(self.get_vetor()[i].get_prox())
+
     def remover_inicio(self):
         pass
     def remover_final(self):

@@ -1,16 +1,26 @@
-# This is a sample Python script.
+from ListaHibrida import *
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+lista = ListaHibrida()
+
+lista.inserir_inicio(10)
+#lista.imprime_lista()
+lista.inserir_inicio(20)
+lista.inserir_inicio(30)
+
+lista.imprime_lista()
+print('---')
+
+lista.inserir_final(2)
+lista.inserir_final(3)
+lista.inserir_final(4)
+lista.imprime_lista()
+
+print('---vs2')
+lista.inserir_inicio(6)
+lista.imprime_lista()
+
+print('--vs3')
+lista.inserir_final(5)
+lista.imprime_lista()
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
